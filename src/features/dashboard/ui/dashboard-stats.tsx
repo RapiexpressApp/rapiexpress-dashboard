@@ -4,13 +4,7 @@ import { StatCard } from '~/features/dashboard/ui/stat-card'
 
 export function DashboardStats() {
   return (
-    <Grid
-      gap={{
-        base: 'md',
-        sm: 'lg',
-        lg: 'xl',
-      }}
-    >
+    <Grid gap="lg">
       <Grid.Col
         span={{
           base: 12,

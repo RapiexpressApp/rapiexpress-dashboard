@@ -16,23 +16,16 @@ const MotionDiv = motion.div
 
 export function StatCard({ title, value, caption, active = false, trend = 'up' }: Props) {
   return (
-    <MotionDiv
-      whileHover={{
-        y: -4,
-      }}
-      transition={{
-        duration: 0.2,
-      }}
-      style={{
-        height: '100%',
-      }}
-    >
+    <MotionDiv whileHover={{ y: -4 }} transition={{ duration: 0.2 }} style={{ height: '100%' }}>
       <Paper
         radius="xl"
         p="lg"
         style={{
           height: '100%',
           minHeight: 170,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
 
           background: active
             ? `linear-gradient(
@@ -49,10 +42,13 @@ export function StatCard({ title, value, caption, active = false, trend = 'up' }
           transition: 'all .25s ease',
         }}
       >
-        {/* HEADER */}
-
-        <Group justify="space-between" align="center">
-          <Text size="sm" fw={600} c={active ? 'rgba(255,255,255,.8)' : palette.muted}>
+        <Group justify="space-between" align="center" wrap="nowrap">
+          <Text
+            size="sm"
+            fw={600}
+            c={active ? 'rgba(255,255,255,.8)' : palette.muted}
+            lineClamp={1}
+          >
             {title}
           </Text>
 
@@ -66,34 +62,31 @@ export function StatCard({ title, value, caption, active = false, trend = 'up' }
           </ActionIcon>
         </Group>
 
-        {/* VALUE */}
-
         <Text
-          mt="lg"
           fw={800}
           c={active ? 'white' : palette.ink}
           style={{
-            fontSize: 38,
+            fontSize: 'clamp(2rem, 5vw, 2.5rem)',
             lineHeight: 1,
             letterSpacing: '-1px',
+            marginTop: 20,
+            marginBottom: 20,
           }}
         >
           {value}
         </Text>
 
-        {/* FOOTER */}
-
-        <Group gap={8} mt="lg" wrap="nowrap">
+        <Group gap={8} wrap="nowrap" align="flex-start">
           {trend === 'up' && (
             <Box
               style={{
                 width: 26,
                 height: 26,
+                minWidth: 26,
                 borderRadius: 8,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-
                 background: active ? 'rgba(255,255,255,.18)' : '#DCFCE7',
               }}
             >
@@ -101,7 +94,14 @@ export function StatCard({ title, value, caption, active = false, trend = 'up' }
             </Box>
           )}
 
-          <Text size="xs" fw={500} c={active ? 'rgba(255,255,255,.75)' : palette.muted}>
+          <Text
+            size="xs"
+            fw={500}
+            c={active ? 'rgba(255,255,255,.75)' : palette.muted}
+            style={{
+              flex: 1,
+            }}
+          >
             {caption}
           </Text>
         </Group>
