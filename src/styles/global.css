@@ -1,0 +1,302 @@
+/* ==========================================================================
+   ROOT
+========================================================================== */
+
+:root {
+  --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --rx-blue: #163e9e;
+  --rx-blue-light: #285ee8;
+  --rx-blue-dark: #0b235e;
+
+  --rx-yellow: #f5c518;
+  --rx-yellow-light: #ffd84d;
+
+  --rx-white: #ffffff;
+  --rx-black: #000000;
+
+  --rx-border-dark: rgba(255, 255, 255, 0.08);
+  --rx-border-light: rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   BASE
+========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+
+  background: var(--mantine-color-body);
+  color: var(--mantine-color-text);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   DARK MODE
+========================================================================== */
+
+[data-mantine-color-scheme='dark'] {
+  --mantine-color-body: #050505;
+
+  --mantine-color-text: #ffffff;
+
+  --mantine-color-default: #111111;
+
+  --mantine-color-default-hover: #1b1b1b;
+
+  --mantine-color-default-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   LIGHT MODE
+========================================================================== */
+
+[data-mantine-color-scheme='light'] {
+  --mantine-color-body: #f7f9fc;
+
+  --mantine-color-text: #111111;
+
+  --mantine-color-default: #ffffff;
+
+  --mantine-color-default-hover: #f4f6f8;
+
+  --mantine-color-default-border: rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   SELECTION
+========================================================================== */
+
+::selection {
+  background: var(--rx-blue);
+  color: #fff;
+}
+
+/* ==========================================================================
+   LINKS
+========================================================================== */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   SCROLLBAR
+========================================================================== */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rx-blue) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rx-blue);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rx-blue-light);
+}
+
+/* ==========================================================================
+   GLASS
+========================================================================== */
+
+.glass {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  background: color-mix(in srgb, var(--mantine-color-body) 78%, transparent);
+
+  border: 1px solid var(--mantine-color-default-border);
+}
+
+/* ==========================================================================
+   LOGIN SURFACE (right panel)
+========================================================================== */
+
+.login-surface {
+  position: relative;
+  overflow: hidden;
+
+  background: var(--mantine-color-body);
+}
+
+.login-surface::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(620px circle at 100% 0%, rgba(22, 62, 158, 0.07), transparent 55%),
+    radial-gradient(520px circle at 0% 100%, rgba(245, 197, 24, 0.06), transparent 50%);
+
+  pointer-events: none;
+}
+
+.login-surface::after {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(22, 62, 158, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(22, 62, 158, 0.035) 1px, transparent 1px);
+
+  background-size: 44px 44px;
+
+  -webkit-mask-image: radial-gradient(circle at 65% 50%, black, transparent 72%);
+  mask-image: radial-gradient(circle at 65% 50%, black, transparent 72%);
+
+  pointer-events: none;
+}
+
+[data-mantine-color-scheme='dark'] .login-surface::before {
+  background:
+    radial-gradient(620px circle at 100% 0%, rgba(40, 94, 232, 0.16), transparent 60%),
+    radial-gradient(520px circle at 0% 100%, rgba(245, 197, 24, 0.05), transparent 50%);
+}
+
+[data-mantine-color-scheme='dark'] .login-surface::after {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+/* ==========================================================================
+   LOGIN CARD
+========================================================================== */
+
+.login-card {
+  background: var(--mantine-color-default);
+
+  border: 1px solid var(--mantine-color-default-border);
+
+  box-shadow:
+    0 1px 2px rgba(11, 35, 94, 0.04),
+    0 24px 60px -20px rgba(11, 35, 94, 0.18);
+}
+
+[data-mantine-color-scheme='dark'] .login-card {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 30px 70px -25px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   LEFT PANEL
+========================================================================== */
+
+.auth-panel {
+  position: relative;
+
+  overflow: hidden;
+
+  background: linear-gradient(180deg, #163e9e 0%, #1548b5 45%, #0b235e 100%);
+
+  color: white;
+}
+
+.auth-panel::before {
+  content: '';
+
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  top: -180px;
+  left: -180px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  filter: blur(100px);
+}
+
+.auth-panel::after {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+
+  background-size: 48px 48px;
+
+  opacity: 0.45;
+
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+/* ==========================================================================
+   BRAND
+========================================================================== */
+
+.brand-blue {
+  color: var(--rx-blue);
+}
+
+.brand-yellow {
+  color: var(--rx-yellow);
+}
+
+.bg-brand {
+  background: var(--rx-blue);
+}
+
+.bg-brand-yellow {
+  background: var(--rx-yellow);
+}
+
+/* ==========================================================================
+   ANIMATIONS
+========================================================================== */
+
+.transition {
+  transition: all 0.25s var(--expo-out);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+========================================================================== */
+
+@media (max-width: 992px) {
+  .auth-panel {
+    display: none;
+  }
+}
