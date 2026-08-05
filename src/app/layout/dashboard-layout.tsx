@@ -11,64 +11,55 @@ interface DashboardLayoutProps {
   children: ReactNode
 }
 
-const HEADER_HEIGHT = {
-  base: 64,
-  sm: 68,
-  md: 72,
-}
-
-const PADDING = {
-  base: 'sm',
-  sm: 'md',
-  md: 'lg',
-  lg: 'xl',
-}
+const HEADER_HEIGHT = 72
+const SIDEBAR_WIDTH = 300
+const SIDEBAR_COLLAPSED_WIDTH = 84
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [opened, setOpened] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
 
-  const navbarWidth = collapsed
-    ? {
-        base: 0,
-        md: 88,
-      }
-    : {
-        base: 280,
-        sm: 290,
-        md: 300,
-        lg: 310,
-        xl: 320,
-      }
-
   return (
     <AppShell
-      header={{ height: HEADER_HEIGHT }}
+      header={{
+        height: {
+          base: 64,
+          sm: 68,
+          md: HEADER_HEIGHT,
+        },
+      }}
       navbar={{
-        width: navbarWidth,
+        width: collapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_WIDTH,
         breakpoint: 'md',
         collapsed: {
           mobile: !opened,
           desktop: false,
         },
       }}
-      padding={PADDING}
+      padding={{
+        base: 'sm',
+        sm: 'md',
+        lg: 'lg',
+      }}
       withBorder={false}
       styles={{
         root: {
           background: palette.page,
+          overflowX: 'hidden',
         },
+
         main: {
+          minHeight: '100vh',
           background: palette.page,
-          transition: 'all .25s ease',
+          overflowX: 'hidden',
         },
       }}
     >
       <AppShell.Header
         style={{
           zIndex: 200,
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          backdropFilter: 'blur(18px)',
+          WebkitBackdropFilter: 'blur(18px)',
           borderBottom: `1px solid ${palette.border}`,
           boxShadow: '0 2px 16px rgba(15,23,42,.05)',
         }}
@@ -76,16 +67,16 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <DashboardHeader
           opened={opened}
           collapsed={collapsed}
-          toggle={() => setOpened(prev => !prev)}
-          toggleCollapsed={() => setCollapsed(prev => !prev)}
+          toggle={() => setOpened(o => !o)}
+          toggleCollapsed={() => setCollapsed(c => !c)}
         />
       </AppShell.Header>
 
       <AppShell.Navbar
         style={{
           overflow: 'hidden',
-          transition: 'width .25s ease',
           borderRight: `1px solid ${palette.border}`,
+          transition: 'width .25s ease',
           boxShadow: '4px 0 18px rgba(15,23,42,.04)',
         }}
       >
@@ -94,16 +85,20 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
       <AppShell.Main
         pt={{
-          base: 80,
-          sm: 84,
-          md: 92,
-          lg: 96,
-        }}
-        style={{
-          minHeight: '100vh',
+          base: 76,
+          md: 88,
         }}
       >
-        <Box w="100%" maw={1600} mx="auto">
+        <Box
+          mx="auto"
+          maw={1600}
+          px={{
+            base: 0,
+            sm: 4,
+            md: 8,
+            lg: 12,
+          }}
+        >
           <PageTransition>{children}</PageTransition>
         </Box>
       </AppShell.Main>
