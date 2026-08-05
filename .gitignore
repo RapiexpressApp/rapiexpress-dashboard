@@ -23,6 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
-#Tanstack
-.tanstack
-.routeTree.gen.ts
+#vercel 
+.vercel
+.env*.local
+
+# tanstack router
+routeTree.gen.ts
+.tanstack/

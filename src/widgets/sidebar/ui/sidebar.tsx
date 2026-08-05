@@ -1,4 +1,4 @@
-import { Box, Divider, ScrollArea, Stack } from '@mantine/core'
+import { Divider, ScrollArea, Stack } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { motion } from 'motion/react'
 
@@ -6,7 +6,7 @@ import { palette } from '~/shared/config/palette'
 
 import { generalLinks, primaryLinks } from '~/widgets/sidebar/data/sidebar.data'
 import type { SidebarProps } from '~/widgets/sidebar/types/sidebar.types'
-import { SidebarDownloadCard } from '~/widgets/sidebar/ui/sidebar-download-card'
+// import { SidebarDownloadCard } from '~/widgets/sidebar/ui/sidebar-download-card'
 import { SidebarLogo } from '~/widgets/sidebar/ui/sidebar-logo'
 import { SidebarSection } from '~/widgets/sidebar/ui/sidebar-section'
 
@@ -83,11 +83,11 @@ export function Sidebar({ collapsed }: SidebarProps) {
             <SidebarSection title="GENERAL" items={generalLinks} collapsed={collapsed} />
           </MotionDiv>
 
-          {!isMobile && (
+          {/* {!isMobile && (
             <Box mt="auto">
               <SidebarDownloadCard collapsed={collapsed} />
             </Box>
-          )}
+          )} */}
         </Stack>
       </ScrollArea>
     </MotionDiv>

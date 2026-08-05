@@ -15,9 +15,16 @@ import { IconLock, IconMail } from '@tabler/icons-react'
 
 import { motion } from 'motion/react'
 import { useState } from 'react'
+import { useNavigate } from '@tanstack/react-router'
 
 export function LoginForm() {
   const [passwordVisible, setPasswordVisible] = useState(false)
+  const navigate = useNavigate()
+  const handleLogin = () => {
+    navigate({
+      to: '/dashboard',
+    })
+  }
 
   return (
     <Flex flex={1} justify="center" align="center" px={40} py={48} className="login-surface">
@@ -101,6 +108,7 @@ export function LoginForm() {
                 color="rapiexpress"
                 fullWidth
                 mt={6}
+                onClick={handleLogin}
                 style={{
                   height: 52,
                   fontWeight: 700,
