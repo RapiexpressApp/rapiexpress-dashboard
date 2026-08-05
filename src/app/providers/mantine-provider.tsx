@@ -4,7 +4,7 @@ import { theme } from '~/shared/theme'
 
 export function AppThemeProvider({ children }: { children: ReactNode }) {
   return (
-    <MantineProvider theme={theme} defaultColorScheme="auto">
+    <MantineProvider theme={theme} defaultColorScheme="light">
       {children}
     </MantineProvider>
   )
