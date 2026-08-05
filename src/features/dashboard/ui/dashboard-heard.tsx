@@ -43,36 +43,33 @@ export function DashboardHeader({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25 }}
       style={{
-        height: '100%',
         width: '100%',
+        height: '100%',
       }}
     >
       <Paper
-        h="100%"
         radius={0}
+        h="100%"
         px={{
-          base: 8,
-          xs: 12,
-          sm: 16,
-          md: 20,
-          lg: 24,
+          base: 'xs',
+          sm: 'sm',
+          md: 'md',
+          lg: 'lg',
         }}
         style={{
           display: 'flex',
           alignItems: 'center',
-          width: '100%',
-          overflow: 'hidden',
+          justifyContent: 'space-between',
+          gap: 12,
           background: '#fff',
           borderBottom: `1px solid ${palette.border}`,
         }}
       >
-        {/* LEFT */}
-
         <Flex
           align="center"
           gap={{
-            base: 6,
-            sm: 8,
+            base: 8,
+            sm: 10,
             md: 12,
           }}
           style={{
@@ -94,21 +91,20 @@ export function DashboardHeader({
 
           <TextInput
             flex={1}
-            w="100%"
             miw={0}
-            maw={720}
+            maw={700}
             radius="xl"
             placeholder="Buscar..."
             leftSection={<IconSearch size={18} />}
             rightSection={
-              <Box visibleFrom="lg">
+              <Box visibleFrom="xl">
                 <Kbd size="xs">⌘ K</Kbd>
               </Box>
             }
-            rightSectionWidth={55}
+            rightSectionWidth={50}
             styles={{
               input: {
-                height: 44,
+                height: 42,
                 background: '#fafafa',
                 border: `1px solid ${palette.border}`,
               },
@@ -116,36 +112,30 @@ export function DashboardHeader({
           />
         </Flex>
 
-        {/* RIGHT */}
-
         <Flex
           align="center"
           gap={{
             base: 4,
-            sm: 6,
+            sm: 8,
             md: 10,
-          }}
-          ml={{
-            base: 8,
-            md: 16,
           }}
           style={{
             flexShrink: 0,
           }}
         >
-          <ActionIcon visibleFrom="lg" radius="xl" variant="subtle" size={42}>
-            <IconMail size={20} />
+          <ActionIcon visibleFrom="lg" radius="xl" variant="subtle" size={40}>
+            <IconMail size={19} />
           </ActionIcon>
 
-          <Indicator inline processing color={palette.primary} size={9} offset={7}>
-            <ActionIcon radius="xl" variant="subtle" size={42}>
-              <IconBell size={20} />
+          <Indicator inline processing color={palette.primary} size={8} offset={6}>
+            <ActionIcon radius="xl" variant="subtle" size={40}>
+              <IconBell size={19} />
             </ActionIcon>
           </Indicator>
 
-          <Divider visibleFrom="lg" orientation="vertical" h={28} />
+          <Divider visibleFrom="lg" orientation="vertical" h={26} />
 
-          <Avatar radius="xl" size={44} style={{ flexShrink: 0 }}>
+          <Avatar radius="xl" size={44}>
             TM
           </Avatar>
 
