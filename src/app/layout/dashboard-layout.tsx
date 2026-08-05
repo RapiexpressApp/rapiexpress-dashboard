@@ -1,42 +1,63 @@
-import { useState } from 'react'
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 
-import { AppShell } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
+import { AppShell, Box } from '@mantine/core'
 
 import { DashboardHeader } from '~/features/dashboard/ui/dashboard-heard'
 import { palette } from '~/shared/config/palette'
-import { Sidebar } from '~/widgets/sidebar/ui/sidebar'
 import { PageTransition } from '~/shared/ui/page-transition'
+import { Sidebar } from '~/widgets/sidebar/ui/sidebar'
 
 interface DashboardLayoutProps {
   children: ReactNode
 }
 
-export function DashboardLayout({ children }: DashboardLayoutProps) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
+const HEADER_HEIGHT = {
+  base: 64,
+  sm: 68,
+  md: 72,
+}
 
+const PADDING = {
+  base: 'sm',
+  sm: 'md',
+  md: 'lg',
+  lg: 'xl',
+}
+
+export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [opened, setOpened] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
 
+  const navbarWidth = collapsed
+    ? {
+        base: 0,
+        md: 88,
+      }
+    : {
+        base: 280,
+        sm: 290,
+        md: 300,
+        lg: 310,
+        xl: 320,
+      }
+
   return (
     <AppShell
-      header={{ height: 72 }}
+      header={{ height: HEADER_HEIGHT }}
       navbar={{
-        width: isMobile ? 280 : collapsed ? 88 : 290,
+        width: navbarWidth,
         breakpoint: 'md',
         collapsed: {
-          desktop: false,
           mobile: !opened,
+          desktop: false,
         },
       }}
-      padding={isMobile ? 'md' : 'xl'}
+      padding={PADDING}
       withBorder={false}
       styles={{
         root: {
           background: palette.page,
         },
-
         main: {
           background: palette.page,
           transition: 'all .25s ease',
@@ -55,8 +76,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <DashboardHeader
           opened={opened}
           collapsed={collapsed}
-          toggle={() => setOpened(value => !value)}
-          toggleCollapsed={() => setCollapsed(value => !value)}
+          toggle={() => setOpened(prev => !prev)}
+          toggleCollapsed={() => setCollapsed(prev => !prev)}
         />
       </AppShell.Header>
 
@@ -72,12 +93,19 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       </AppShell.Navbar>
 
       <AppShell.Main
-        pt={isMobile ? 88 : 96}
+        pt={{
+          base: 80,
+          sm: 84,
+          md: 92,
+          lg: 96,
+        }}
         style={{
           minHeight: '100vh',
         }}
       >
-        <PageTransition>{children}</PageTransition>
+        <Box w="100%" maw={1600} mx="auto">
+          <PageTransition>{children}</PageTransition>
+        </Box>
       </AppShell.Main>
     </AppShell>
   )

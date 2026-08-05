@@ -1,5 +1,4 @@
 import { Divider, ScrollArea, Stack } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
 import { motion } from 'motion/react'
 
 import { palette } from '~/shared/config/palette'
@@ -13,18 +12,8 @@ import { SidebarSection } from '~/widgets/sidebar/ui/sidebar-section'
 const MotionDiv = motion.div
 
 export function Sidebar({ collapsed }: SidebarProps) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
-
   return (
     <MotionDiv
-      style={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
-        background: '#fff',
-        borderRight: `1px solid ${palette.border}`,
-      }}
       initial={{
         opacity: 0,
         x: -20,
@@ -37,14 +26,17 @@ export function Sidebar({ collapsed }: SidebarProps) {
         duration: 0.25,
         ease: 'easeOut',
       }}
+      style={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+        background: '#fff',
+        borderRight: `1px solid ${palette.border}`,
+      }}
     >
       <ScrollArea h="100%" type="never" scrollbarSize={4} offsetScrollbars>
-        <Stack
-          h="100%"
-          gap={isMobile ? 'md' : 'xl'}
-          px={collapsed ? 8 : isMobile ? 'sm' : 'md'}
-          py={isMobile ? 'md' : 'lg'}
-        >
+        <Stack h="100%" gap="lg" px={collapsed ? 8 : 'md'} py="lg">
           <SidebarLogo collapsed={collapsed} />
 
           <Divider color={palette.border} opacity={0.6} />
@@ -83,11 +75,11 @@ export function Sidebar({ collapsed }: SidebarProps) {
             <SidebarSection title="GENERAL" items={generalLinks} collapsed={collapsed} />
           </MotionDiv>
 
-          {/* {!isMobile && (
-            <Box mt="auto">
-              <SidebarDownloadCard collapsed={collapsed} />
-            </Box>
-          )} */}
+          {/*
+          <Box mt="auto">
+            <SidebarDownloadCard collapsed={collapsed} />
+          </Box>
+          */}
         </Stack>
       </ScrollArea>
     </MotionDiv>

@@ -43,7 +43,7 @@ function StatusBadge({ status }: { status: string }) {
   }
 
   return (
-    <Badge color={current.color} variant="light" radius="xl" px="md">
+    <Badge color={current.color} variant="light" radius="xl">
       {current.label}
     </Badge>
   )
@@ -56,12 +56,14 @@ export function DashboardTable() {
       p="lg"
       withBorder
       style={{
-        borderColor: palette.border,
+        width: '100%',
+        overflow: 'hidden',
         background: '#fff',
+        borderColor: palette.border,
       }}
     >
-      <Group justify="space-between" mb="lg">
-        <Group gap="sm">
+      <Group justify="space-between" align="center" mb="lg" wrap="wrap">
+        <Group gap="sm" wrap="nowrap">
           <Avatar radius="md" size={38} color="blue">
             <IconPackage size={20} />
           </Avatar>
@@ -82,47 +84,42 @@ export function DashboardTable() {
         </Badge>
       </Group>
 
-      <ScrollArea>
+      <ScrollArea type="auto" offsetScrollbars>
         <Table
-          verticalSpacing="md"
+          miw={650}
           highlightOnHover
+          verticalSpacing="md"
           styles={{
             th: {
               fontWeight: 700,
               color: '#6b7280',
               background: '#f8fafc',
+              whiteSpace: 'nowrap',
             },
-
             td: {
               borderBottom: '1px solid #f1f5f9',
+              whiteSpace: 'nowrap',
             },
           }}
         >
           <Table.Thead>
             <Table.Tr>
               <Table.Th>ID</Table.Th>
-
               <Table.Th>Cliente</Table.Th>
-
               <Table.Th>Estado</Table.Th>
             </Table.Tr>
           </Table.Thead>
 
           <Table.Tbody>
             {rows.map(row => (
-              <Table.Tr
-                key={row.id}
-                style={{
-                  transition: '0.2s ease',
-                }}
-              >
+              <Table.Tr key={row.id}>
                 <Table.Td>
                   <Text fw={600}>{row.id}</Text>
                 </Table.Td>
 
                 <Table.Td>
-                  <Group gap="sm">
-                    <Avatar radius="xl" color="gray">
+                  <Group gap="sm" wrap="nowrap">
+                    <Avatar radius="xl" color="gray" size={34}>
                       {row.client.charAt(0)}
                     </Avatar>
 

@@ -6,18 +6,7 @@ import { DashboardTable } from '~/features/dashboard/ui/dashboard-table'
 
 export function DashboardPage() {
   return (
-    <Box
-      w="100%"
-      px={{
-        base: 'sm',
-        sm: 'md',
-        lg: 'xl',
-      }}
-      py={{
-        base: 'md',
-        sm: 'xl',
-      }}
-    >
+    <Box w="100%" maw={1600} mx="auto">
       <Stack gap="xl">
         <DashboardStats />
 

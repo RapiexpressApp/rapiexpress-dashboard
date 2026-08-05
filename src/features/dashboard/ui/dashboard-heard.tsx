@@ -4,14 +4,13 @@ import {
   Box,
   Burger,
   Divider,
-  Group,
+  Flex,
   Indicator,
   Kbd,
   Paper,
   Text,
   TextInput,
 } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
 import {
   IconBell,
   IconChevronLeft,
@@ -38,145 +37,128 @@ export function DashboardHeader({
   collapsed,
   toggleCollapsed,
 }: DashboardHeaderProps) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
-
   return (
     <MotionDiv
-      initial={{
-        opacity: 0,
-        y: -10,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-      }}
-      transition={{
-        duration: 0.25,
-      }}
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25 }}
       style={{
         height: '100%',
+        width: '100%',
       }}
     >
       <Paper
         h="100%"
-        px={isMobile ? 'sm' : 'lg'}
         radius={0}
+        px={{
+          base: 8,
+          xs: 12,
+          sm: 16,
+          md: 20,
+          lg: 24,
+        }}
         style={{
           display: 'flex',
           alignItems: 'center',
+          width: '100%',
+          overflow: 'hidden',
           background: '#fff',
           borderBottom: `1px solid ${palette.border}`,
         }}
       >
-        {/* IZQUIERDA */}
+        {/* LEFT */}
 
-        <Group
-          flex={1}
-          gap={isMobile ? 'xs' : 'md'}
-          wrap="nowrap"
+        <Flex
+          align="center"
+          gap={{
+            base: 6,
+            sm: 8,
+            md: 12,
+          }}
           style={{
+            flex: 1,
             minWidth: 0,
           }}
         >
-          <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" />
+          <Burger hiddenFrom="md" opened={opened} onClick={toggle} size="sm" />
 
-          {!isMobile && (
-            <ActionIcon radius="xl" variant="subtle" size={42} onClick={toggleCollapsed}>
-              {collapsed ? <IconChevronRight size={18} /> : <IconChevronLeft size={18} />}
-            </ActionIcon>
-          )}
+          <ActionIcon
+            visibleFrom="md"
+            radius="xl"
+            variant="subtle"
+            size={42}
+            onClick={toggleCollapsed}
+          >
+            {collapsed ? <IconChevronRight size={18} /> : <IconChevronLeft size={18} />}
+          </ActionIcon>
 
           <TextInput
             flex={1}
+            w="100%"
+            miw={0}
+            maw={720}
             radius="xl"
-            size={isMobile ? 'sm' : 'md'}
-            placeholder={isMobile ? 'Buscar...' : 'Buscar envíos, clientes o pedidos...'}
+            placeholder="Buscar..."
             leftSection={<IconSearch size={18} />}
             rightSection={
-              !isMobile ? (
-                <Box
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    paddingRight: 8,
-                  }}
-                >
-                  <Kbd
-                    size="xs"
-                    style={{
-                      height: 22,
-                      minWidth: 42,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: 6,
-                      fontSize: 11,
-                    }}
-                  >
-                    ⌘ K
-                  </Kbd>
-                </Box>
-              ) : undefined
+              <Box visibleFrom="lg">
+                <Kbd size="xs">⌘ K</Kbd>
+              </Box>
             }
-            rightSectionWidth={65}
+            rightSectionWidth={55}
             styles={{
               input: {
-                height: isMobile ? 40 : 46,
-                border: `1px solid ${palette.border}`,
-                fontSize: 14,
+                height: 44,
                 background: '#fafafa',
-              },
-
-              section: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                border: `1px solid ${palette.border}`,
               },
             }}
           />
-        </Group>
+        </Flex>
 
-        {/* DERECHA */}
+        {/* RIGHT */}
 
-        <Group gap={isMobile ? 'xs' : 'sm'} wrap="nowrap" ml={isMobile ? 8 : 20}>
-          {!isMobile && (
-            <ActionIcon variant="subtle" radius="xl" size={42}>
-              <IconMail size={20} />
-            </ActionIcon>
-          )}
+        <Flex
+          align="center"
+          gap={{
+            base: 4,
+            sm: 6,
+            md: 10,
+          }}
+          ml={{
+            base: 8,
+            md: 16,
+          }}
+          style={{
+            flexShrink: 0,
+          }}
+        >
+          <ActionIcon visibleFrom="lg" radius="xl" variant="subtle" size={42}>
+            <IconMail size={20} />
+          </ActionIcon>
 
           <Indicator inline processing color={palette.primary} size={9} offset={7}>
-            <ActionIcon variant="subtle" radius="xl" size={isMobile ? 38 : 42}>
+            <ActionIcon radius="xl" variant="subtle" size={42}>
               <IconBell size={20} />
             </ActionIcon>
           </Indicator>
 
-          {!isMobile && <Divider orientation="vertical" h={30} />}
+          <Divider visibleFrom="lg" orientation="vertical" h={28} />
 
-          <Avatar
-            radius="xl"
-            size={isMobile ? 38 : 44}
-            color="blue"
-            style={{
-              border: '2px solid white',
-              boxShadow: '0 2px 10px rgba(0,0,0,.08)',
-            }}
-          >
+          <Avatar radius="xl" size={44} style={{ flexShrink: 0 }}>
             TM
           </Avatar>
 
-          {!isMobile && (
-            <Box>
-              <Text fw={700} size="sm">
-                Totok Michael
-              </Text>
+          <Box visibleFrom="xl" maw={180}>
+            <Text fw={700} size="sm" truncate>
+              Totok Michael
+            </Text>
 
-              <Text size="xs" c="dimmed">
-                tmichael20@mail.com
-              </Text>
-            </Box>
-          )}
-        </Group>
+            <Text size="xs" c="dimmed" truncate>
+              tmichael20@mail.com
+            </Text>
+          </Box>
+        </Flex>
       </Paper>
     </MotionDiv>
   )

@@ -8,8 +8,7 @@ import { palette } from '~/shared/config/palette'
 
 export function DashboardChart() {
   return (
-    <Grid gap="xl">
-      {/* Tendencia */}
+    <Grid gap="lg">
       <Grid.Col
         span={{
           base: 12,
@@ -18,19 +17,17 @@ export function DashboardChart() {
       >
         <Paper
           radius="xl"
-          p={{
-            base: 'md',
-            sm: 'xl',
-          }}
+          p="xl"
           withBorder
           style={{
             background: palette.surface,
             borderColor: palette.border,
-            boxShadow: '0 10px 30px rgba(0,0,0,0.04)',
+            boxShadow: '0 10px 30px rgba(0,0,0,.04)',
+            height: '100%',
           }}
         >
           <Group justify="space-between" align="center" mb="xl" wrap="wrap">
-            <Group gap="md">
+            <Group gap="md" wrap="nowrap">
               <ThemeIcon size={50} radius="md" variant="light" color="blue">
                 <IconChartLine size={26} />
               </ThemeIcon>
@@ -72,7 +69,6 @@ export function DashboardChart() {
         </Paper>
       </Grid.Col>
 
-      {/* Estados */}
       <Grid.Col
         span={{
           base: 12,
@@ -81,18 +77,16 @@ export function DashboardChart() {
       >
         <Paper
           radius="xl"
-          p={{
-            base: 'md',
-            sm: 'xl',
-          }}
+          p="xl"
           withBorder
           style={{
             background: palette.surface,
             borderColor: palette.border,
-            boxShadow: '0 10px 30px rgba(0,0,0,0.04)',
+            boxShadow: '0 10px 30px rgba(0,0,0,.04)',
+            height: '100%',
           }}
         >
-          <Group mb="xl">
+          <Group mb="xl" wrap="nowrap">
             <ThemeIcon size={50} radius="md" variant="light" color="green">
               <IconPackage size={26} />
             </ThemeIcon>
