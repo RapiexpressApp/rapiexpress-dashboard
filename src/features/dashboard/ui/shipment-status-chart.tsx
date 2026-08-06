@@ -1,4 +1,5 @@
 import { DonutChart } from '@mantine/charts'
+import { Box, useMatches } from '@mantine/core'
 
 const data = [
   {
@@ -19,17 +20,48 @@ const data = [
 ]
 
 export function ShipmentStatusChart() {
+  const size = useMatches({
+    base: 220,
+    xs: 240,
+    sm: 260,
+    md: 300,
+    lg: 340,
+    xl: 380,
+  })
+
+  const thickness = useMatches({
+    base: 30,
+    xs: 34,
+    sm: 40,
+    md: 46,
+    lg: 52,
+    xl: 58,
+  })
+
+  const withLabels = useMatches({
+    base: false,
+    sm: true,
+  })
+
   return (
-    <DonutChart
-      size={320}
-      thickness={55}
-      data={data}
-      withLegend
-      withTooltip
-      withLabels
-      chartLabel="210 envíos"
-      tooltipDataSource="segment"
-      mx="auto"
-    />
+    <Box
+      w="100%"
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <DonutChart
+        data={data}
+        size={size}
+        thickness={thickness}
+        withLegend
+        withTooltip
+        withLabels={withLabels}
+        chartLabel="210 envíos"
+        tooltipDataSource="segment"
+      />
+    </Box>
   )
 }
