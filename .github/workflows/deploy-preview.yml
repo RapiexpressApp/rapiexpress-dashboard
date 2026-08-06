@@ -13,16 +13,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.12.0
-          cache: pnpm
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 11
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -30,12 +31,9 @@ jobs:
       - name: Build application
         run: pnpm build
 
-      - name: Install Vercel CLI
-        run: pnpm add -g vercel
-
-      - name: Deploy Preview
+      - name: Deploy Preview to Vercel
         run: |
-          vercel deploy --yes \
+          pnpm dlx vercel deploy --yes \
             --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
