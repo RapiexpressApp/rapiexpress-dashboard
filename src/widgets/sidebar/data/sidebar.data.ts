@@ -17,6 +17,11 @@ export const primaryLinks: readonly NavItem[] = [
     icon: IconLayoutDashboard,
   },
   {
+    label: 'Usuarios',
+    href: '/users',
+    icon: IconUsers,
+  },
+  {
     label: 'Envíos',
     href: '/shipments',
     icon: IconPackage,
@@ -29,7 +34,12 @@ export const primaryLinks: readonly NavItem[] = [
   },
   {
     label: 'Clientes',
-    href: '/customers',
+    href: '/clients',
+    icon: IconUsers,
+  },
+  {
+    label: 'Pagos',
+    href: '/payments',
     icon: IconUsers,
   },
   {
