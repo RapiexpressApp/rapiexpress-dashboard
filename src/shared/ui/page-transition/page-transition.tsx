@@ -1,13 +1,11 @@
-import type { ReactNode } from 'react'
 import { motion } from 'motion/react'
+import type { PageTransitionProps } from '~/shared/ui/page-transition/types/page-transition-types'
 
-interface PageTransitionProps {
-  children: ReactNode
-}
+const MotionDiv = motion.div
 
 export function PageTransition({ children }: PageTransitionProps) {
   return (
-    <motion.div
+    <MotionDiv
       initial={{
         opacity: 0,
         y: 10,
@@ -22,6 +20,6 @@ export function PageTransition({ children }: PageTransitionProps) {
       }}
     >
       {children}
-    </motion.div>
+    </MotionDiv>
   )
 }

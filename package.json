@@ -19,7 +19,8 @@
     "@tanstack/react-router-devtools": "^1.167.1",
     "motion": "^13.0.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@babel/core": "^8.0.1",
